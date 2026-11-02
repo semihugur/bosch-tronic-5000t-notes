@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bosch Tronic 5000 T (TR5501iTR) WiFi water heater — field notes: schedule, HomeCom Easy, safety valve</title>
+<meta name="description" content="Owner field notes for the Bosch Tronic 5000 T TR5501iTR 100 DEBP WiFi electric water heater: why Schedule mode reverts to Manual (5 blinks), how power-off erases the schedule, thermal disinfection, HomeCom Easy pairing, and safety valve dripping.">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "about":"Bosch Tronic 5000 T TR5501iTR 100 DEBP WiFi electric water heater with HomeCom Easy app",
+ "mainEntity":[
+  {"@type":"Question","name":"Why does the Bosch Tronic 5000 T blink 5 times on Schedule/Programme mode and return to Manual?",
+   "acceptedAnswer":{"@type":"Answer","text":"The unit has no schedule stored in its own memory. The schedule can only be sent to the unit from the HomeCom Easy app. If no schedule is stored, selecting Programme mode makes the symbol blink and skip to the next mode (manual sections 4.5.4 and 4.12). Fix: in the app, edit the schedule and save (then change it back and save again) so it is re-sent to the unit, then activate Programme mode on the unit's panel."}},
+  {"@type":"Question","name":"Does switching the Bosch Tronic 5000 T off erase the schedule?",
+   "acceptedAnswer":{"@type":"Answer","text":"Yes. Switching the unit off and on, or a power cut, returns it to Manual mode and deletes the stored schedule. The app still shows the old schedule because it is cached in the app, but the unit no longer has it. Do not use the OFF toggle to stop heating; resend the schedule after any power interruption."}},
+  {"@type":"Question","name":"Why does the Bosch Tronic 5000 T heat to 65°C after a power cut?",
+   "acceptedAnswer":{"@type":"Answer","text":"After a power interruption the thermal disinfection function heats the tank to 65°C for up to 1 hour. The HomeCom Easy app shows a dedicated screen while this runs. If there is no such screen, the heating is not disinfection."}},
+  {"@type":"Question","name":"Is it normal that the safety valve drips about 1 litre while the water heater heats up?",
+   "acceptedAnswer":{"@type":"Answer","text":"Yes. Water expands about 1.5-2% when heated from 10-15°C to 60-70°C, so a 100 L tank releases roughly 1.5-2 L per full heat-up through the safety valve. Never block the valve. Constant dripping while not heating is not normal (faulty valve or mains pressure too high)."}}
+ ]
+}
+</script>
+<style>
+  :root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6b6a64;--line:#e3e0d8;--accent:#9a3b12;--box:#f2efe8;--ok:#2f6b3a;--warn:#8a5a00}
+  @media (prefers-color-scheme:dark){:root{--bg:#171715;--fg:#ebe9e3;--muted:#a19f97;--line:#33322e;--accent:#e08a5b;--box:#22211e;--ok:#7fc08a;--warn:#e0b45b}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+  h1{font-size:1.6rem;line-height:1.25;margin:0 0 8px}
+  h2{font-size:1.2rem;margin:40px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+  h3{font-size:1rem;margin:20px 0 4px}
+  p,li{margin:6px 0}
+  .lead{color:var(--muted);margin-bottom:20px}
+  table{border-collapse:collapse;width:100%;font-size:.93rem;margin:8px 0}
+  th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;width:38%}
+  .box{background:var(--box);border-left:3px solid var(--accent);padding:10px 14px;margin:12px 0;border-radius:4px}
+  .tag{display:inline-block;font-size:.72rem;font-weight:600;padding:1px 7px;border-radius:10px;border:1px solid currentColor;margin-right:6px;vertical-align:1px}
+  .man{color:var(--ok)} .obs{color:var(--accent)} .est{color:var(--warn)}
+  code{background:var(--box);padding:1px 5px;border-radius:3px;font-size:.9em}
+  nav ol{padding-left:20px} nav a{color:var(--accent)}
+  footer{margin-top:48px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<main>
+<h1>Bosch Tronic 5000 T (TR5501iTR 100 DEBP WiFi) — owner field notes</h1>
+<p class="lead">Problems hit while installing and running this water heater with the HomeCom Easy app, and what actually caused them. Several of these are not documented anywhere online that we could find; the answers came from the paper manual and from testing on the unit. Written Nov 2026, firmware/app versions of that time.</p>
+
+<p><span class="tag man">Manual</span>stated in the Bosch manual (section given) &nbsp; <span class="tag obs">Observed</span>tested on the real unit &nbsp; <span class="tag est">Estimate</span>calculation or likely explanation, not confirmed</p>
+
+<nav><ol>
+  <li><a href="#unit">The unit</a></li>
+  <li><a href="#schedule">Schedule reverts to Manual / blinks 5 times</a></li>
+  <li><a href="#poweroff">Power off erases the schedule</a></li>
+  <li><a href="#disinfection">Thermal disinfection (65°C after power cut)</a></li>
+  <li><a href="#timing">Why it heats before the schedule window</a></li>
+  <li><a href="#pairing">Pairing with HomeCom Easy</a></li>
+  <li><a href="#valve">Safety valve dripping</a></li>
+  <li><a href="#wrong">Wrong leads (don't waste time on these)</a></li>
+</ol></nav>
+
+<h2 id="unit">1. The unit</h2>
+<table>
+<tr><th>Model</th><td>Bosch TR5501iTR 100 DEBP WiFi, Tronic 5000 T range</td></tr>
+<tr><th>Capacity</th><td>100 L nominal, ~74 L usable</td></tr>
+<tr><th>Heaters</th><td>Dual tank, 2 × 1500 W</td></tr>
+<tr><th>Mounting</th><td>Vertical or horizontal</td></tr>
+<tr><th>Size (H×W×D)</th><td>90.2 × 56.9 × 31.7 cm</td></tr>
+<tr><th>Energy class</th><td>B (~1312 kWh/yr)</td></tr>
+<tr><th>Control</th><td>LED touch panel + WiFi (2.4 GHz), app: Bosch HomeCom Easy</td></tr>
+<tr><th>Warranty</th><td>60 months (Bulgaria)</td></tr>
+</table>
+
+<h2 id="schedule">2. Schedule mode won't stick — blinks 5 times and returns to Manual</h2>
+<p><b>Symptom:</b> selecting Schedule/Programme in the app does nothing, or switches back to Manual. Selecting it on the panel: the clock symbol blinks ~5 times, then the unit jumps back to Manual after 2–3 seconds. The app still shows a schedule, and on/off and temperature commands from the app work.</p>
+<div class="box">
+<p><span class="tag man">Manual §4.5.4, §4.12</span><b>Cause:</b> the unit has no schedule stored in its own memory. The schedule exists only in the app's cache. The unit cannot run Programme mode without a stored schedule, so the symbol blinks and the unit skips to the next mode.</p>
+<p>The schedule can only be sent to the unit from the app. The panel cannot create one.</p>
+</div>
+<h3>Fix</h3>
+<ol>
+  <li>Make sure the unit is <b>ON</b> in the app. <span class="tag obs">Observed</span>A schedule does not take while the unit is OFF.</li>
+  <li>In HomeCom Easy, open the schedule, change something (e.g. move an end time by 1 h), save. Change it back, save again. Saving an edit forces the app to send the schedule to the unit.</li>
+  <li>Activate Programme mode <b>on the unit's panel</b>: press the mode button until the clock symbol is active, then confirm. The manual describes panel activation as the supported way.</li>
+  <li>Wait a minute and check it is still in Programme mode.</li>
+</ol>
+
+<h2 id="poweroff">3. Switching off (or a power cut) erases the schedule</h2>
+<div class="box">
+<p><span class="tag man">Manual §4.5.4, §4.12</span>Switching the unit off and on resets its settings: in Programme mode it returns to Manual and <b>deletes the stored schedule</b>. A power interruption does the same.</p>
+</div>
+<ul>
+  <li>Do not use the OFF toggle (app) or power button to "pause" heating. Lower the setpoint instead, or let the schedule handle it.</li>
+  <li>After any power cut (or breaker off), resend the schedule from the app as in section 2.</li>
+  <li><span class="tag man">Manual</span>If the unit loses WiFi, it temporarily switches to the previous mode and returns to Programme mode when the connection comes back. The schedule depends on WiFi.</li>
+  <li><span class="tag obs">Observed</span>The unit has no clock display and no way to set time on the panel. The app has no time field either. With the unit online, the app's timeline marker matched real time, so time comes over the network.</li>
+</ul>
+
+<h2 id="disinfection">4. Thermal disinfection — heating to 65°C after a power cut</h2>
+<div class="box">
+<p><span class="tag man">Manual</span>After a power interruption the thermal disinfection (anti-Legionella) function heats the tank to <b>65°C for up to 1 hour</b>.</p>
+<p><span class="tag obs">Observed</span>While disinfection runs, HomeCom Easy shows a dedicated information screen. If that screen is <b>not</b> shown, the heating is not disinfection — look for another cause (Manual mode setpoint, schedule pre-heat).</p>
+</div>
+<p>Because disinfection is triggered by a power interruption, seeing this screen also tells you the schedule has just been erased (section 3). Resend it after disinfection finishes.</p>
+
+<h2 id="timing">5. It starts heating before the schedule window</h2>
+<p><span class="tag obs">Observed</span>With a window of 12:00–17:00 at 75°C, heating started around 11:00.</p>
+<p><span class="tag est">Estimate</span>The schedule appears to mean "have the tank at the target temperature by the window start", so it pre-heats. Heating 100 L from ~45°C to 75°C needs ≈ 3.5 kWh; at 1.5 kW that is a bit over 2 h. If you want heating to happen inside a specific period (e.g. peak solar hours), place the window start about 1–2 h after the moment you want heating to begin.</p>
+<p>In <b>Manual</b> mode the unit holds the setpoint all day and reheats whenever the tank drops, which looks like "random" heating.</p>
+<p>The "Showers" figure in the app is an estimate of how many showers the current tank temperature gives. It is not a setting.</p>
+
+<h2 id="pairing">6. Pairing with HomeCom Easy</h2>
+<ul>
+  <li>The unit uses <b>2.4 GHz WiFi only</b>. If your router merges 2.4 and 5 GHz under one network name (common on ISP routers), temporarily turn 5 GHz off during pairing. You can turn it back on afterwards.</li>
+  <li>If automatic Bluetooth detection fails, use manual pairing through the unit's hotspot.</li>
+  <li>The WiFi credentials/QR code are on a <b>separate sticker</b>, not the rating plate. Check you are reading the right label.</li>
+  <li><span class="tag obs">Observed</span>Right after pairing, the app may show "Updating…" with firmware 01.00.00, and mode settings are blocked until it finishes. Waiting resolved it.</li>
+</ul>
+
+<h2 id="valve">7. Safety valve dripping while heating</h2>
+<div class="box">
+<p><span class="tag est">Calculation</span>Water expands ~1.5–2% from 10–15°C to 60–70°C. For 100 L that is <b>~1.5–2 L per full heat-up</b>, released in drops through the safety valve on the cold inlet. About 1 L during a heat-up is normal.</p>
+</div>
+<p><b>Never cap or block the valve.</b></p>
+<p><b>Not normal:</b></p>
+<ul>
+  <li>Constant dripping while the unit is <i>not</i> heating — faulty/stuck valve, or mains pressure above the valve rating (check the label; fix with a pressure reducer on the main inlet).</li>
+  <li>Water from anywhere other than the valve outlet (tank, flange, fittings).</li>
+</ul>
+<p><b>Handling the drip:</b></p>
+<ul>
+  <li>Hose from the valve outlet into a sink siphon with a side inlet (washing-machine type siphon) — hidden, no splashing.</li>
+  <li>Hose into the basin overflow hole — no plumbing work.</li>
+  <li>8 L potable-water expansion vessel on the cold line between valve and heater — absorbs the expansion, so the valve stops dripping in normal use.</li>
+  <li>Lift the valve lever about once a month to flush it.</li>
+</ul>
+
+<h2 id="wrong">8. Wrong leads (don't waste time on these)</h2>
+<ul>
+  <li><b>"App can't reach the unit."</b> Wrong in this case — on/off and temperature from the app worked. Communication was fine; the unit simply had no stored schedule.</li>
+  <li><b>"Set the clock on the unit."</b> There is no clock setting on the panel.</li>
+  <li><b>"Factory reset / re-pair to fix Schedule."</b> Not needed. Re-sending the schedule (edit + save) and activating Programme on the panel was enough.</li>
+  <li><b>"Every unexplained heating is disinfection."</b> Disinfection targets 65°C and the app shows a screen for it. A heat-up to 70°C+ without that screen was something else.</li>
+  <li><b>Web search.</b> No online documentation was found for the 5-blink behaviour or schedule loss. The paper manual (sections 4.5.4 and 4.12) was the only reliable source.</li>
+</ul>
+
+<footer>Owner notes from one installation in Bulgaria, Oct–Nov 2026. Not affiliated with Bosch. Behaviour may change with firmware or app updates; check your manual. Written with help from Claude.</footer>
+</main>
+</body>
+</html>
