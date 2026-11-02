@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://semihugur.github.io/bosch-tronic-5000t-notes/sitemap.xml
